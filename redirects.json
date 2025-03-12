@@ -1,3 +1,13 @@
 {
-    "adrian": "https://www.adrianosborne.com.au/"
+    "adrian": "https://www.adrianosborne.com.au/",
+    "qr": "https://www.adrianosborne.com.au/qr-landing.html",
+    "site": "https://www.adrianosborne.com.au/",
+    "website": "https://www.adrianosborne.com.au/",
+    "portfolio": "https://www.adrianosborne.com.au/#portfolio",
+    "projects": "https://www.adrianosborne.com.au/#portfolio",
+    "resume": "https://www.adrianosborne.com.au/resume.html",
+    "ctf": "https://packetwhiffers.cc/",
+    "blog": "https://www.cyberbunker.news/",
+    "github": "https://github.com/AdrianOsborne",
+    "linkedin": "https://www.linkedin.com/in/adrianbosborne/"
 }

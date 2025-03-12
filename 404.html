@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        async function redirect() {
+            let path = window.location.pathname.replace(/^\/+|\/+$/g, ""); // Remove slashes
+
+            try {
+                let response = await fetch("/redirects.json"); // Ensure correct path
+                if (!response.ok) {
+                    throw new Error("Redirects JSON not found");
+                }
+
+                let redirects = await response.json();
+                if (redirects[path]) {
+                    window.location.replace(redirects[path]);
+                } else {
+                    document.body.innerHTML = "<h1>404 - Shortlink Not Found</h1>";
+                }
+            } catch (error) {
+                console.error("Error loading redirects:", error);
+                document.body.innerHTML = "<h1>Error loading redirects</h1>";
+            }
+        }
+
+        window.onload = redirect;
+    </script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+</body>
+</html>

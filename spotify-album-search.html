@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Image Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      width: 300px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: none;
+      background-color: #1DB954;
+      color: white;
+      cursor: pointer;
+    }
+    .instructions {
+      max-width: 500px;
+      margin-top: 30px;
+      font-size: 16px;
+      line-height: 1.5;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Spotify Image Finder</h1>
+  <div>
+    <input type="text" id="searchTerm" placeholder="Enter search term (e.g. artist name)">
+    <button onclick="searchSpotifyImage()">Go</button>
+  </div>
+
+  <div class="instructions">
+    <h2>How to copy an image link:</h2>
+    <ol>
+      <li>Type what you're looking for (e.g. “Taylor Swift”)</li>
+      <li>Click the “Go” button</li>
+      <li>Google Images will open in a new tab with results only from <strong>spotify.com</strong></li>
+      <li>Right-click an image you want</li>
+      <li>Select <strong>“Copy image address”</strong> (or similar wording)</li>
+      <li>Paste it wherever you need the image link</li>
+    </ol>
+  </div>
+
+  <script>
+    function searchSpotifyImage() {
+      const term = document.getElementById('searchTerm').value.trim();
+      if (!term) return;
+
+      const query = encodeURIComponent(`${term} site:spotify.com`);
+      const url = `https://www.google.com/search?tbm=isch&q=${query}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

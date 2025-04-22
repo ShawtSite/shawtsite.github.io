@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=VT323&display=swap');
+
+/* Color Variables */
+:root {
+  --bg-black: #000000;
+  --text-white: #ffffff;
+  --dusty-rose: #A03A49;
+  --blood-red: #880808;
+  --border-dark: #000000;
+  --overlay-black: rgba(0, 0, 0, 0.7);
+  --banner-bg: #1a0005;
+}
+
+/* Base */
+html {
+  font-size: 20px;
+}
+body, main, .row.profile {
+  background: var(--bg-black) !important;
+  color: var(--text-white) !important;
+}
+body {
+  font-family: 'VT323', monospace;
+}
+
+/* Nav */
+nav, nav * {
+  background: var(--bg-black) !important;
+  border: none !important;
+}
+nav ul.links a,
+nav ul.links a:visited,
+nav ul.links li.active a {
+  color: var(--dusty-rose) !important;
+}
+nav ul.links a:hover {
+  color: var(--blood-red) !important;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-family: 'Rubik Mono One', sans-serif;
+  color: var(--dusty-rose) !important;
+  text-shadow: 2px 2px var(--bg-black);
+  text-align: center;
+  font-size: 22px;
+}
+
+/* Section Headers */
+.heading,
+.heading span,
+.col.w-40.left h4 {
+  background: var(--banner-bg) !important;
+  color: var(--dusty-rose) !important;
+  border: none !important;
+  text-shadow: 2px 2px var(--bg-black);
+}
+
+/* Hide “About me” & “Who I’d like to meet” */
+.blurbs .inner .section > h4 {
+  display: none !important;
+}
+
+/* Sidebar (LEFT COLUMN) */
+.col.w-40.left {
+  /* keep your black base */
+  background-color: var(--bg-black) !important;
+  /* add the repeating bat pattern */
+  background-image: url('https://media.discordapp.net/attachments/1251182793510223873/1363938039667359784/bats.png?ex=6807d9c9&is=68068849&hm=57080297a65a5c64fd51c5818baa64dd4b6af8e1a290377c3fece44854c9c341&=&format=webp&quality=lossless') !important;
+  background-repeat: repeat !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+
+  border: 2px solid var(--dusty-rose) !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+.col.w-40.left * {
+  color: var(--dusty-rose) !important;
+  background: transparent !important;
+}
+.col.w-40.left a,
+.col.w-40.left a:visited {
+  color: var(--dusty-rose) !important;
+  text-decoration: none !important;
+}
+.col.w-40.left a:hover {
+  color: var(--blood-red) !important;
+}
+
+/* Contact, URL & Interests Boxes */
+.contact, .url-info, .table-section {
+  background: var(--bg-black) !important;
+  border: 2px solid var(--dusty-rose) !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+.contact .heading,
+.table-section .heading {
+  background: var(--banner-bg) !important;
+  padding: 8px;
+}
+.contact .inner,
+.table-section .inner,
+.url-info {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.contact a:hover {
+  color: var(--blood-red) !important;
+}
+
+/* Tables (Interests & Comments) */
+.details-table, .details-table td,
+.comments-table, .comments-table td {
+  background: var(--bg-black) !important;
+  border: 1px solid var(--dusty-rose) !important;
+  color: var(--dusty-rose) !important;
+}
+
+/* Blurbs & Blog Preview */
+.profile .right .inner,
+.blurbs .inner,
+.blog-preview {
+  background-image: url('https://media.discordapp.net/attachments/1251182793510223873/1363938039667359784/bats.png?ex=6807d9c9&is=68068849&hm=57080297a65a5c64fd51c5818baa64dd4b6af8e1a290377c3fece44854c9c341&=&format=webp&quality=lossless')
+                      !important;
+  background-repeat: repeat !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+  border: 2px solid var(--dusty-rose) !important;
+  border-radius: 10px;
+  padding: 10px;
+  color: var(--dusty-rose);
+}
+
+/* Friends Section */
+.friends .inner {
+  background: var(--bg-black) !important;
+  border: 2px solid var(--border-dark) !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+.friends .inner,
+.friends .inner * {
+  color: var(--dusty-rose) !important;
+}
+.friends .person a:hover p {
+  color: var(--blood-red) !important;
+}
+
+/* Section Containers */
+.section {
+  background: var(--overlay-black) !important;
+  border: 2px solid var(--dusty-rose) !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Online Status */
+.online img, .count {
+  filter: brightness(120%);
+}
+.count {
+  color: var(--text-white) !important;
+}
+
+/* Footer */
+footer {
+  background: url(https://media1.tenor.com/m/0ylv2ZhaPEcAAAAC/bat-fly-away.gif) repeat;
+  border: 4px solid var(--bg-black) !important;
+  border-radius: 10px;
+  color: var(--text-white);
+}
+
+/* Forms & Inputs */
+button, input, select, textarea {
+  font-family: 'VT323', monospace;
+  background: var(--bg-black) !important;
+  border: 2px solid var(--dusty-rose) !important;
+  color: var(--text-white);
+  padding: 5px;
+}
+
+/* Links */
+a, a:visited {
+  color: var(--dusty-rose) !important;
+  text-decoration: none !important;
+}
+a:hover {
+  color: var(--blood-red) !important;
+  text-decoration: underline !important;
+}
+
+/* ─── STACK LAYOUT ────────────────────────────────────────────────────────── */
+
+/* Make the profile row a vertical flex container */
+.row.profile {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Force both columns to be full‑width and turn off any floats */
+.row.profile .col {
+  width: 100% !important;
+  max-width: none !important;
+  float: none !important;
+  clear: none !important;
+  margin: 0 0 20px !important;
+}

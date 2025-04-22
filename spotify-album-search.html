@@ -13,42 +13,31 @@
       align-items: center;
       padding-top: 50px;
     }
-    input, button {
+    input {
       padding: 10px;
+      font-size: 18px;
+      width: 300px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 20px;
       font-size: 18px;
       border-radius: 5px;
       border: none;
-      margin: 5px;
-    }
-    input {
-      width: 300px;
-    }
-    button {
       background-color: #1DB954;
       color: white;
       cursor: pointer;
     }
-    .instructions, #result {
+    .instructions {
       max-width: 500px;
       margin-top: 30px;
       font-size: 16px;
+      line-height: 1.5;
       background: #222;
       padding: 20px;
       border-radius: 10px;
-    }
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
-    textarea {
-      width: 100%;
-      background: #333;
-      color: #fff;
-      border: none;
-      padding: 10px;
-      margin-top: 10px;
-      font-family: monospace;
     }
   </style>
 </head>
@@ -59,56 +48,26 @@
     <button onclick="searchSpotifyImage()">Go</button>
   </div>
 
-  <div id="result" style="display: none;">
-    <h2>Image Found:</h2>
-    <img id="albumImage" src="" alt="Album Image">
-    <textarea id="imageLink" readonly></textarea>
-    <button onclick="copyLink()">Copy Image URL</button>
-  </div>
-
   <div class="instructions">
-    <h2>How it works:</h2>
+    <h2>How to copy an image link:</h2>
     <ol>
-      <li>Type something like “The Black Parade, My Chemical Romance”</li>
-      <li>Click “Go” — the script will find the first Spotify-hosted image</li>
-      <li>If successful, it’ll display the image and give you a link</li>
-      <li>Click “Copy Image URL” to copy it to your clipboard</li>
+      <li>Type what you're looking for (e.g. “The Black Parade, My Chemical Romance”)</li>
+      <li>Click the “Go” button</li>
+      <li>Google Images will open in a new tab with results only from <strong>spotify.com</strong></li>
+      <li>Right-click an image you want</li>
+      <li>Select <strong>“Copy image address”</strong> (or similar wording)</li>
+      <li>Paste it wherever you need the image link</li>
     </ol>
   </div>
 
   <script>
-    async function searchSpotifyImage() {
+    function searchSpotifyImage() {
       const term = document.getElementById('searchTerm').value.trim();
       if (!term) return;
 
-      const query = encodeURIComponent(`${term} site:spotifycdn.com`);
-      const url = `https://www.bing.com/images/search?q=${query}&qft=+filterui:license-L2_L3&form=IRFLTR`;
-
-      try {
-        const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`);
-        const text = await response.text();
-        const imgMatch = text.match(/"murl":"(https:\/\/[^"]+?spotifycdn[^"]+?)"/);
-
-        if (imgMatch && imgMatch[1]) {
-          const imgUrl = imgMatch[1].replace(/\\u002f/g, '/');
-
-          document.getElementById('albumImage').src = imgUrl;
-          document.getElementById('imageLink').value = imgUrl;
-          document.getElementById('result').style.display = 'block';
-        } else {
-          alert("No Spotify image found. Try a different search term.");
-        }
-      } catch (err) {
-        alert("There was an error fetching the image.");
-        console.error(err);
-      }
-    }
-
-    function copyLink() {
-      const textarea = document.getElementById("imageLink");
-      textarea.select();
-      document.execCommand("copy");
-      alert("Copied to clipboard!");
+      const query = encodeURIComponent(`${term} site:spotify.com`);
+      const url = `https://www.google.com/search?tbm=isch&q=${query}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>

@@ -3,33 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Redirecting</title>
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #0b0b0f;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            padding: 24px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .ascii-art {
+            display: block;
+            text-align: center;
+            white-space: pre;
+            font-family: "Courier New", monospace;
+            font-size: clamp(6px, 0.8vw, 12px);
+            line-height: 1;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+
+        .status {
+            margin-top: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #b8b8c2;
+        }
+    </style>
+
     <script>
         async function redirect() {
-            let path = window.location.pathname.replace(/^\/+|\/+$/g, ""); // Remove slashes
+            const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
 
             try {
-                let response = await fetch("/redirects.json"); // Ensure correct path
-                if (!response.ok) {
-                    throw new Error("Redirects JSON not found");
-                }
+                const response = await fetch("/redirects.json");
+                if (!response.ok) throw new Error("Redirects JSON not found");
 
-                let redirects = await response.json();
+                const redirects = await response.json();
+
                 if (redirects[path]) {
                     window.location.replace(redirects[path]);
                 } else {
-                    document.body.innerHTML = "<h1>404 - Shortlink Not Found</h1>";
+                    document.getElementById("status").textContent = "Invalid Shortlink";
+                    document.getElementById("subtext").textContent = "The requested shortlink does not exist.";
                 }
+
             } catch (error) {
-                console.error("Error loading redirects:", error);
-                document.body.innerHTML = "<h1>Error loading redirects</h1>";
+                console.error(error);
+                document.getElementById("status").textContent = "Error loading redirects";
+                document.getElementById("subtext").textContent = "Please try again later.";
             }
         }
 
         window.onload = redirect;
     </script>
 </head>
+
 <body>
-    <h1>Redirecting...</h1>
+    <div class="container">
+
+<pre class="ascii-art">
+                                                                                                                
+                                                                                                                
+  .--.--.     ,---,                                 ___                                                         
+ /  /    '. ,--.' |                               ,--.'|_                                                       
+|  :  /`. / |  |  :                        .---.  |  | :,'                          ,---.    __  ,-.            
+;  |  |--`  :  :  :                       /. ./|  :  : ' :                         '   ,'\ ,' ,'/ /|  ,----._,. 
+|  :  ;_    :  |  |,--.  ,--.--.       .-'-. ' |.;__,'  /                         /   /   |'  | |' | /   /  ' / 
+ \  \    `. |  :  '   | /       \     /___/ \: ||  |   |                         .   ; ,. :|  |   ,'|   :     | 
+  `----.   \|  |   /' :.--.  .-. | .-'.. '   ' .:__,'| :                         '   | |: :'  :  /  |   | .\  . 
+  __ \  \  |'  :  | | | \__\/: . ./___/ \:     '  '  : |__                       '   | .; :|  | '   .   ; ';  | 
+ /  /`--'  /|  |  ' | : ," .--.; |.   \  ' .\     |  | '.'|                      |   :    |;  : |   '   .   . | 
+'--'.     / |  :  :_:,'/  /  ,.  | \   \   ' \ |  ;  :    ;         ___           \   \  / |  , ;    `---`-'| | 
+  `--'---'  |  | ,'   ;  :   .'   \ \   \  |--"   |  ,   /         /  .\           `----'   ---'     .'__/\_: | 
+            `--''     |  ,     .-./  \   \ |       ---`-'          \  ; |                            |   :    : 
+                       `--`---'       '---"                         `--"                              \   \  /  
+                                                                                                       `--`-'    
+</pre>
+
+        <div class="status">
+            <h1 id="status">Redirecting</h1>
+            <p id="subtext">Please wait while we send you to your destination.</p>
+        </div>
+
+    </div>
 </body>
 </html>

@@ -29,20 +29,23 @@
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
             text-align: center;
         }
-
+        
         .ascii-art {
             display: block;
             text-align: center;
             white-space: pre;
             font-family: "Courier New", monospace;
-            font-size: clamp(6px, 0.8vw, 12px);
+
+            font-size: clamp(4px, 0.5vw, 10px);
+
             line-height: 1;
             margin-bottom: 24px;
-            overflow-x: auto;
+
+            overflow: hidden;
         }
 
         .status {

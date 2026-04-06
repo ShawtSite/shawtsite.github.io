@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting</title>
+
     <style>
         :root {
             color-scheme: dark;
@@ -15,43 +16,37 @@
 
         body {
             margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background: #0b0b0f;
             color: #f5f5f5;
             font-family: Arial, sans-serif;
             padding: 24px;
-            text-align: center;
         }
 
         .container {
-            max-width: 100%;
             width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .ascii-art {
-            margin: 0 auto 24px;
-            display: inline-block;
+            display: block;
             text-align: left;
             white-space: pre;
-            font-family: "Courier New", Courier, monospace;
+            font-family: "Courier New", monospace;
             font-size: clamp(4px, 0.6vw, 10px);
             line-height: 1;
-            color: #ffffff;
-            max-width: 100%;
+            margin-bottom: 24px;
             overflow-x: auto;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+        }
+
+        .status {
+            margin-top: 20px;
         }
 
         h1 {
             margin: 0;
             font-size: 1.5rem;
-            font-weight: 600;
         }
 
         p {
@@ -59,15 +54,14 @@
             color: #b8b8c2;
         }
     </style>
+
     <script>
         async function redirect() {
             const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
 
             try {
                 const response = await fetch("/redirects.json");
-                if (!response.ok) {
-                    throw new Error("Redirects JSON not found");
-                }
+                if (!response.ok) throw new Error("Redirects JSON not found");
 
                 const redirects = await response.json();
 
@@ -77,8 +71,9 @@
                     document.getElementById("status").textContent = "Invalid Shortlink";
                     document.getElementById("subtext").textContent = "The requested shortlink does not exist.";
                 }
+
             } catch (error) {
-                console.error("Error loading redirects:", error);
+                console.error(error);
                 document.getElementById("status").textContent = "Error loading redirects";
                 document.getElementById("subtext").textContent = "Please try again later.";
             }
@@ -87,9 +82,11 @@
         window.onload = redirect;
     </script>
 </head>
+
 <body>
     <div class="container">
-        <pre class="ascii-art">
+
+<pre class="ascii-art">
                                                                                                                 
                                                                                                                 
   .--.--.     ,---,                                 ___                                                         
@@ -106,10 +103,13 @@
             `--''     |  ,     .-./  \   \ |       ---`-'          \  ; |                            |   :    : 
                        `--`---'       '---"                         `--"                              \   \  /  
                                                                                                        `--`-'    
-        </pre>
+</pre>
 
-        <h1 id="status">Redirecting</h1>
-        <p id="subtext">Please wait while we send you to your destination.</p>
+        <div class="status">
+            <h1 id="status">Redirecting</h1>
+            <p id="subtext">Please wait while we send you to your destination.</p>
+        </div>
+
     </div>
 </body>
 </html>
